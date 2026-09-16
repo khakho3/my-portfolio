@@ -1,27 +1,131 @@
 import './App.css'
 
-// Replace these fields with your personal details to update the whole portfolio.
 const profile = {
-  name: 'Hassan Abdul Aziz', role: 'Creative developer & problem solver', location: 'Based wherever ideas take me', email: 'hello@aziz.com',
-  bio: 'I turn thoughtful ideas into useful, memorable digital experiences. I care about clear design, clean code, and work that makes a genuine difference.',
-  about: 'My work sits at the intersection of curiosity and craft. I enjoy learning quickly, solving real problems, and turning an early concept into something people can use with confidence.',
-  skills: ['React', 'JavaScript', 'HTML & CSS', 'Responsive design', 'UI/UX', 'Problem solving'],
-  projects: [
-    { title: 'Featured project', description: 'A short description of a project you are proud of—what you made, who it helped, and the result.', tags: ['React', 'Design'], link: '#contact' },
-    { title: 'Next big idea', description: 'Use this space to show another product, website, case study, or meaningful collaboration.', tags: ['Web', 'Creative'], link: '#contact' },
+  name: 'Hassan Abdul Aziz',
+  title: 'Computer Engineer · Full-Stack, Flutter & Embedded Systems Developer',
+  location: 'Available for opportunities',
+  email: 'hello@aziz.com',
+  introduction:
+    'I design and build thoughtful digital products across web, mobile, and connected-device projects—combining practical engineering with a strong user experience.',
+  about:
+    'I am a developer with interests in full-stack web development, Flutter mobile applications, UI/UX, and IoT. I enjoy taking ideas from an early concept through to a useful, well-structured product, while continuing to grow in embedded systems and AI.',
+  strengths: [
+    'Flutter & Dart development',
+    'Full-stack web development',
+    'UI/UX design',
+    'IoT & embedded systems projects',
   ],
-  socials: [{ label: 'GitHub', href: 'https://github.com/' }, { label: 'LinkedIn', href: 'https://www.linkedin.com/' }],
+  skills: ['Flutter', 'Dart', 'Python', 'C/C++', 'Arduino', 'MATLAB', 'SQLite', 'Git & GitHub', 'UI/UX', 'IoT'],
+  projects: [
+    {
+      name: 'Personal Portfolio',
+      type: 'Frontend development · 2026',
+      description:
+        'A focused personal website that turns a technical profile into a clear, responsive, and memorable digital experience.',
+      tags: ['React', 'CSS', 'Responsive'],
+      href: '#contact',
+    },
+    {
+      name: 'IoT Projects',
+      type: 'Embedded systems · In progress',
+      description:
+        'A growing collection of connected-device experiments that bring together hardware, software, sensors, and useful data.',
+      tags: ['Arduino', 'C/C++', 'IoT'],
+      href: '#contact',
+    },
+  ],
+  links: [
+    { label: 'GitHub', href: 'https://github.com/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+  ],
+}
+
+function Arrow() {
+  return <span aria-hidden="true">↗</span>
 }
 
 function App() {
+  const initials = profile.name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+
   return (
     <main>
-      <nav className="nav" aria-label="Main navigation"><a className="brand" href="#home">{profile.name.split(' ').map((part) => part[0]).join('').slice(0, 2)}</a><div className="nav-links"><a href="#about">About</a><a href="#work">Work</a><a href="#contact">Contact</a></div></nav>
-      <section className="hero" id="home"><div className="hero-name"><p className="eyebrow">{profile.location}</p><h1>Hassan<br /><span>Abdul Aziz</span></h1><p className="hero-role">{profile.role}</p></div><div className="hero-intro"><p className="section-label">A little about me</p><p className="hero-copy">{profile.bio}</p><div className="hero-actions"><a className="button button-primary" href="#work">Explore my work</a><a className="button button-secondary" href={`mailto:${profile.email}`}>Get in touch ↗</a></div></div></section>
-      <section className="about section" id="about"><p className="section-label">01 / About me</p><div><h2>A little more about my journey.</h2><p>{profile.about}</p><div className="skills">{profile.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></div></section>
-      <section className="section work" id="work"><div className="section-heading"><p className="section-label">02 / Selected work</p><h2>Things I’ve brought to life.</h2></div><div className="project-grid">{profile.projects.map((project, index) => <article className="project-card" key={project.title}><div className={`project-art project-art-${index + 1}`}><span>0{index + 1}</span></div><div className="project-content"><div className="project-title"><h3>{project.title}</h3><a href={project.link} aria-label={`View ${project.title}`}>↗</a></div><p>{project.description}</p><div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div></section>
-      <section className="contact" id="contact"><p className="section-label">03 / Contact</p><h2>Let’s make something<br />meaningful together.</h2><a className="email-link" href={`mailto:${profile.email}`}>{profile.email} ↗</a><div className="social-links">{profile.socials.map((social) => <a key={social.label} href={social.href} target="_blank" rel="noreferrer">{social.label} ↗</a>)}</div></section>
-      <footer>© {new Date().getFullYear()} {profile.name}. Built with intention.</footer>
+      <header className="site-header">
+        <a className="monogram" href="#home" aria-label={`${profile.name} home`}>{initials}</a>
+        <nav aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#work">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section className="hero" id="home">
+        <div>
+          <p className="eyebrow">{profile.location}</p>
+          <h1>{profile.name}</h1>
+          <p className="title">{profile.title}</p>
+        </div>
+        <div className="hero-summary">
+          <p>{profile.introduction}</p>
+          <div className="hero-actions">
+            <a className="button button-solid" href="#work">View selected work <Arrow /></a>
+            <a className="button button-outline" href={`mailto:${profile.email}`}>Contact me <Arrow /></a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section about" id="about">
+        <p className="eyebrow">01 — About</p>
+        <div className="section-content">
+          <h2>Engineering ideas into experiences people can use.</h2>
+          <p className="body-copy">{profile.about}</p>
+          <div className="strengths">
+            {profile.strengths.map((strength) => <span key={strength}>{strength}</span>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section work" id="work">
+        <div className="work-heading">
+          <p className="eyebrow">02 — Selected work</p>
+          <h2>Built at the meeting point of code, people, and possibility.</h2>
+        </div>
+        <div className="project-list">
+          {profile.projects.map((project) => (
+            <article className="project" key={project.name}>
+              <div className="project-details">
+                <p className="project-type">{project.type}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <div className="tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+              </div>
+              <a className="project-link" href={project.href} aria-label={`Learn more about ${project.name}`}><Arrow /></a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="skills-section">
+        <div>
+          <p className="eyebrow">Tools & skills</p>
+          <p>Technologies I use to take an idea from concept to working product.</p>
+        </div>
+        <div className="skill-list">{profile.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+      </section>
+
+      <section className="contact" id="contact">
+        <p className="eyebrow">03 — Contact</p>
+        <h2>Have an idea worth building?</h2>
+        <a className="email" href={`mailto:${profile.email}`}>{profile.email} <Arrow /></a>
+        <div className="socials">
+          {profile.links.map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer">{link.label} <Arrow /></a>)}
+        </div>
+      </section>
+
+      <footer>© {new Date().getFullYear()} {profile.name}</footer>
     </main>
   )
 }
