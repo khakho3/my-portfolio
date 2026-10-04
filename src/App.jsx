@@ -1,8 +1,9 @@
 import './App.css'
-import profilePhoto from './assets/profile-hassan.jpeg'
-import campusResourceTracker from './assets/projects/campus-resource-tracker.jpeg'
-import civicVoice from './assets/projects/civicvoice.jpeg'
-import esp32Blaster from './assets/projects/esp32-blaster.jpeg'
+import Hero from './components/Hero'
+import techExpoPhoto from './assets/tech-expo-2026.jpeg'
+import ProjectsSection from './components/ProjectsSection'
+import ProjectDetail from './components/ProjectDetail'
+import { projects } from './data/projects'
 
 const profile = {
   name: 'Hassan Abdul Aziz',
@@ -11,7 +12,7 @@ const profile = {
   phone: '+233 539472431',
   github: 'https://github.com/khakho3',
   linkedin: 'https://www.linkedin.com/in/abdul-aziz-hassan-a2127536b?utm_source=share_via&utm_content=profile&utm_medium=member_android', // Replace with your LinkedIn profile URL.
-  intro: 'I build practical web, mobile, and connected-device experiences with a focus on clean engineering and thoughtful user experience.',
+  intro: 'I combine software and hardware to build dependable web, mobile, and IoT systems that turn useful ideas into working products.',
   about: 'I am a software developer who enjoys combining software and hardware to create technology that is useful, understandable, and built to grow. I work across full-stack web development, Flutter applications, UI/UX, and IoT—learning by building and improving with every project.',
 }
 
@@ -24,24 +25,58 @@ const skillGroups = [
   { title: 'Tools & platforms', skills: ['Git', 'GitHub', 'Arduino', 'MATLAB'] },
 ]
 
-const projects = [
+const skillIcons = {
+  Dart: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg',
+  Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+  'C/C++': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+  JavaScript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  Flutter: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+  React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  HTML: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  CSS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  SQLite: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
+  Git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+  GitHub: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+  Arduino: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg',
+  MATLAB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg',
+}
+
+const skillGroupIcons = {
+  'Programming languages': skillIcons.Python,
+  'Mobile development': skillIcons.Flutter,
+  'Web development': skillIcons.React,
+  'UI/UX & design': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+  Databases: skillIcons.SQLite,
+  'Tools & platforms': skillIcons.Git,
+}
+
+const skillSymbols = {
+  'Responsive mobile UI': '⌁',
+  'Responsive design': '↔',
+  'Interface design': '✦',
+  'User flows': '→',
+  Prototyping: '◇',
+}
+
+/* Legacy project data retained temporarily during the case-study migration.
+const legacyProjects = [
   {
     title: 'Personal Developer Portfolio',
     category: 'Web development',
-    description: 'A responsive personal website designed to communicate my work, skills, learning journey, and contact details clearly.',
+    description: 'A responsive personal website designed to help hiring teams, clients, and collaborators quickly understand my work, strengths, and ways to get in touch.',
     problem: 'Making a technical profile easy for recruiters, clients, and collaborators to understand.',
     role: 'Design and frontend development',
     tech: ['React', 'CSS', 'Responsive design'],
-    image: profilePhoto,
-    visualLabel: 'HA',
+    image: null,
+    visualLabel: '💼',
     github: 'https://github.com/khakho3/my-portfolio',
     demo: null,
   },
   {
     title: 'Campus Resource Tracker',
     category: 'IoT project',
-    description: 'A campus-focused resource tracking project. Add your final project summary, screenshots, and key outcomes here as the work develops.',
-    problem: 'Tracking and organising campus resources.',
+    description: 'An in-progress IoT project exploring clearer ways to track and organise campus resources.',
+    problem: 'Making campus resources easier to locate and manage.',
     role: 'IoT project development',
     tech: ['IoT', 'Arduino', 'C/C++'],
     image: campusResourceTracker,
@@ -51,8 +86,8 @@ const projects = [
   {
     title: 'ESP32 Blaster',
     category: 'Embedded systems project',
-    description: 'An ESP32-based project in your IoT portfolio. Add its technical goal, hardware setup, and the result you achieved here.',
-    problem: 'Add the project problem statement.',
+    description: 'An in-progress embedded project built around the ESP32, documenting my hands-on work with connected hardware.',
+    problem: 'Exploring reliable interaction between embedded hardware and software.',
     role: 'Embedded systems development',
     tech: ['ESP32', 'C/C++', 'IoT'],
     image: esp32Blaster,
@@ -65,23 +100,22 @@ const projects = [
     description: 'CivicVoice gives citizens a direct way to report issues to the relevant authorities, helping important community concerns become visible and actionable.',
     problem: 'Making it easier for citizens to communicate local issues to authorities.',
     role: 'Citizen-facing feature development',
-    tech: ['Technology details to add'],
+    tech: ['Civic technology', 'Product thinking', 'Web'],
     image: civicVoice,
     github: 'https://github.com/khakho3',
     demo: null,
   },
 ]
+*/
 
 const achievements = [
   { name: 'Tech/Expo 2026 Winner — Terra Sense AI', organization: 'Academic City', date: '2026', description: 'Winner at Academic City Tech/Expo 2026 with Terra Sense AI.', link: 'https://www.linkedin.com/posts/abdul-aziz-hassan-a2127536b_techexpo2026-innovation-techforgood-activity-7444361524833591296-w3s5?utm_source=share&utm_medium=member_android&rcm=ACoAAFuypnkBCQ_04hkKTV3LMm6gce5KDxpeet8' },
-  { name: 'Add a certificate or award', organization: 'Organization name', date: 'Date earned', description: 'Replace this with the achievement, what it recognises, and a verification link if available.', link: null },
-  { name: 'Add a learning badge', organization: 'Platform or organization', date: 'Date earned', description: 'Use this space for a course completion, technical badge, competition, or professional milestone.', link: null },
 ]
 
 const journey = [
   { label: 'Education', text: 'Computer Engineering student at Ghana Communication Technology University (GCTU).' },
-  { label: 'Development journey', text: 'Add the moment you started building software or a key milestone in your growth.' },
-  { label: 'Projects & practice', text: 'Add a project, collaboration, competition, or tech expo that shaped your experience.' },
+  { label: 'Development journey', text: 'Building across web, mobile, UI/UX, and embedded systems through focused, practical projects.' },
+  { label: 'Projects & practice', text: 'Using project work to learn how useful products move from an idea to a clear experience.' },
   { label: 'Tech/Expo 2026', text: 'Won Academic City Tech/Expo 2026 with Terra Sense AI.' },
   { label: 'Now', text: 'Building web, mobile, and IoT projects while growing in embedded systems and AI.' },
 ]
@@ -91,6 +125,8 @@ function Arrow() {
 }
 
 function App() {
+  const match = window.location.pathname.match(/^\/projects\/([^/]+)\/?$/)
+  if (match) return <div className="site dark"><ProjectDetail project={projects.find((project) => project.slug === match[1])} /></div>
   const initials = profile.name.split(' ').map((word) => word[0]).join('').slice(0, 2)
 
   return (
@@ -103,20 +139,9 @@ function App() {
           </nav>
         </header>
 
-        <section className="hero" id="home">
-          <div className="hero-copy">
-            <p className="label">{profile.title}</p>
-            <h1>Hassan Abdul<br /><em>Aziz.</em></h1>
-          </div>
-          <div className="hero-intro">
-            <p>{profile.intro}</p>
-            <div className="hero-actions">
-              <a className="button primary" href="#projects">View my projects <Arrow /></a>
-              <a className="button secondary" href={`mailto:${profile.email}`}>Contact me <Arrow /></a>
-            </div>
-            <div className="quick-links"><a href={profile.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn <Arrow /></a></div>
-          </div>
-        </section>
+        <Hero profile={profile} />
+
+        <div className="signal-bar" aria-label="Areas of practice"><span>Web systems</span><span>Mobile interfaces</span><span>Connected devices</span><span>Human-centered tech</span></div>
 
         <section className="section two-column" id="about">
           <p className="label">About me</p>
@@ -126,25 +151,15 @@ function App() {
         <section className="section" id="skills">
           <div className="section-heading"><p className="label">Skills & technologies</p><h2>A practical toolkit for building digital products.</h2></div>
           <div className="skill-grid">
-            {skillGroups.map((group) => <article className="skill-group" key={group.title}><h3>{group.title}</h3><div>{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div></article>)}
+            {skillGroups.map((group) => <article className="skill-group" key={group.title}><img className="skill-watermark" src={skillGroupIcons[group.title]} alt="" aria-hidden="true" /><h3>{group.title}</h3><div>{group.skills.map((skill) => <span key={skill}>{skillIcons[skill] ? <img src={skillIcons[skill]} alt="" aria-hidden="true" /> : <b className="skill-symbol" aria-hidden="true">{skillSymbols[skill]}</b>}{skill}</span>)}</div></article>)}
           </div>
         </section>
 
-        <section className="section" id="projects">
-          <div className="section-heading"><p className="label">Featured projects</p><h2>Evidence of how I think, build, and learn.</h2></div>
-          <div className="project-grid">
-            {projects.map((project, index) => <article className="project-card" key={project.title}>
-              <div className={`project-visual visual-${index + 1}`}>
-                {project.image ? <>{<img src={project.image} alt={`${project.title} project preview`} />}{project.visualLabel && <span>{project.visualLabel}</span>}{project.visualLabel && <small>Project preview</small>}</> : <><span>{project.visualLabel ?? (index === 0 ? 'HA' : 'ESP')}</span><small>Project preview</small></>}
-              </div>
-              <div className="project-content"><p className="project-category">{project.category}</p><h3>{project.title}</h3><p>{project.description}</p><dl><div><dt>Role</dt><dd>{project.role}</dd></div><div><dt>Problem</dt><dd>{project.problem}</dd></div></dl><div className="tags">{project.tech.map((tech) => <span key={tech}>{tech}</span>)}</div><div className="project-links">{project.github && <a href={project.github} target="_blank" rel="noreferrer">View on GitHub <Arrow /></a>}{project.demo ? <a href={project.demo} target="_blank" rel="noreferrer">Live demo <Arrow /></a> : <span>Demo coming soon</span>}</div></div>
-            </article>)}
-          </div>
-        </section>
+        <ProjectsSection projects={projects} />
 
         <section className="section achievements" id="achievements">
-          <div className="section-heading"><p className="label">Achievements & badges</p><h2>Milestones worth documenting.</h2></div>
-          <div className="achievement-grid">{achievements.map((item) => <article className="achievement-card" key={item.name}><div className="badge-placeholder" aria-hidden="true">✦</div><p className="achievement-date">{item.date}</p><h3>{item.name}</h3><p className="organization">{item.organization}</p><p>{item.description}</p>{item.link ? <a href={item.link} target="_blank" rel="noreferrer">Verify <Arrow /></a> : <span className="placeholder-link">Add verification link</span>}</article>)}</div>
+          <div className="section-heading"><p className="label">Recognition</p><h2>Milestones worth documenting.</h2></div>
+          <div className="achievement-grid">{achievements.map((item) => <article className="achievement-card" key={item.name}><div className="achievement-photo"><img src={techExpoPhoto} alt="Academic City Tech Expo 2026 winners holding award cheques" /></div><div className="achievement-copy"><p className="achievement-date">{item.date}</p><h3>{item.name}</h3><p className="organization">{item.organization}</p><p>{item.description}</p>{item.link && <a href={item.link} target="_blank" rel="noreferrer">Verify <Arrow /></a>}</div></article>)}</div>
         </section>
 
         <section className="section two-column" id="journey">
